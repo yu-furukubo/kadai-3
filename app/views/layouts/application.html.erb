@@ -7,13 +7,13 @@
     <%= csp_meta_tag %>
 
     <script src="https://kit.fontawesome.com/02d3b10da1.js" crossorigin="anonymous"></script>
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
     <header>
-      <a><%= link_to 'Bookers', root_path %></a>
+      <a><%= link_to '____Bookers', root_path %></a>
       <!--ログイン時は :Home :Users :Books :Log out-->
       <!--ログアウト時は :Home :About :Sign up :Log in-->
       <% if user_signed_in? %>
@@ -24,6 +24,13 @@
       <% end %>
       <!--ヘッダー分岐作成前-->
     </header>
-    <%= yield %>
+
+    <main>
+      <%= yield %>
+    </main>
+
+    <footer>
+      <p>CopyRight Infratop.inc</p>
+    </footer>
   </body>
 </html>
