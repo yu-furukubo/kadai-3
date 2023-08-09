@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Kadai-3</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <script src="https://kit.fontawesome.com/02d3b10da1.js" crossorigin="anonymous"></script>
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <header>
+      <a><%= link_to 'Bookers', root_path %></a>
+      <!--ログイン時は :Home :Users :Books :Log out-->
+      <!--ログアウト時は :Home :About :Sign up :Log in-->
+      <% if user_signed_in? %>
+        <li>
+
+        </li>
+      <% else %>
+      <% end %>
+      <!--ヘッダー分岐作成前-->
+    </header>
+    <%= yield %>
+  </body>
+</html>
