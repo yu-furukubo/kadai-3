@@ -11,25 +11,67 @@
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
-    <header>
-      <a><%= link_to '____Bookers', root_path %></a>
-      <!--ログイン時は :Home :Users :Books :Log out-->
-      <!--ログアウト時は :Home :About :Sign up :Log in-->
-      <% if user_signed_in? %>
-        <li>
-
-        </li>
-      <% else %>
-      <% end %>
-      <!--ヘッダー分岐作成前-->
+  <body class="d-flex flex-column">
+    <header class="bg-dark">
+      <nav class="navbar navbar-expand-lg">
+      <div class="container">
+        <a class="navbar-barand p-0"><%= link_to 'Bookers', root_path, class: "text-white" %></a>
+        <!--ログイン時は :Home :Users :Books :Log out-->
+        <!--ログアウト時は :Home :About :Sign up :Log in-->
+        <ul class="navbar-nav ml-auto">
+        <% if user_signed_in? %>
+          <li class="nav-item">
+            <%= link_to user_path(current_user.id), class: "nav-link text-white" do %>
+              <i class="fa-solid fa-house"></i> Home
+            <% end %>
+          </li>
+          <li class="nav-item">
+            <%= link_to users_path, class: "nav-link text-white" do %>
+              <i class="fa-solid fa-users"></i> Users
+            <% end %>
+          </li>
+          <li class="nav-item">
+            <%= link_to books_path, class: "nav-link text-white" do %>
+              <i class="fa-solid fa-book-open"></i> Books
+            <% end %>
+          </li>
+          <li class="nav-item">
+            <%= link_to destroy_user_session_path, method: :delete, class: "nav-link text-white" do %>
+              <i class="fa-solid fa-right-from-bracket"></i> Log out
+            <% end %>
+          </li>
+        <% else %>
+          <li class="nav-item">
+            <%= link_to root_path, class: "nav-link text-white" do %>
+              <i class="fa-solid fa-house"></i> Home
+            <% end %>
+          </li>
+          <li class="nav-item">
+            <%= link_to about_path, class: "nav-link text-white" do %>
+              <i class="fa-solid fa-link"></i> About
+            <% end %>
+          </li>
+          <li class="nav-item">
+            <%= link_to new_user_registration_path, class: "nav-link text-white" do %>
+              <i class="fa-solid fa-user-plus"></i> Sign up
+            <% end %>
+          </li>
+          <li class="nav-item">
+            <%= link_to new_user_session_path, class: "nav-link text-white" do %>
+              <i class="fa-solid fa-right-to-bracket"></i> Log in
+            <% end %>
+          </li>
+        </ul>
+        <% end %>
+      </div>
+      </nav>
     </header>
 
     <main>
       <%= yield %>
     </main>
 
-    <footer>
+    <footer class="m-4 text-center">
       <p>CopyRight Infratop.inc</p>
     </footer>
   </body>
