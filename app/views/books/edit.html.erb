@@ -1,2 +1,34 @@
-<h1>Books#edit</h1>
-<p>Find me in app/views/books/edit.html.erb</p>
+<div class="container">
+  <div class="d-flex flex-column">
+    <div class="col-6 mx-auto m-4">
+      <h1>Editing Book</h1>
+
+      <% if @book.errors.any? %>
+        <%= @book.errors.count %> errors prohibited this book from being saved:
+        <ul>
+          <% @book.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      <% end %>
+
+      <%= form_with model: @book, local: true do |f| %>
+        <div class="p-2">
+          <p>Title</p>
+          <%= f.text_field :title %>
+        </div>
+        <div class="p-2">
+          <p>Opinion</p>
+          <%= f.text_area :body %>
+        </div>
+        <%= f.submit 'Update Book', class:"btn btn-info m-2" %>
+      <% end %>
+
+      <div class="row m-2">
+        <%= link_to 'Show', book_path(@book.id) %>
+        <p>&nbsp;|&nbsp;</p>
+        <%= link_to 'Back', books_path %>
+      </div>
+    </div>
+  </div>
+</div>

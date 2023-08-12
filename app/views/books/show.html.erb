@@ -1,2 +1,53 @@
-<h1>Books#show</h1>
-<p>Find me in app/views/books/show.html.erb</p>
+<div class="container m-4 mx-auto">
+  <div class="row">
+    <div class="col-4">
+      <%= render 'layouts/sidebar',user: @book.user %>
+    </div>
+
+    <div class="col-8 px-3">
+      <h1>Book detail</h1>
+
+      <table>
+        <% if @book.user_id == current_user.id %>
+          <tr>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+          </tr>
+
+          <tr>
+            <td>
+              <%= link_to book_path do %>
+                <%= image_tag @book.user.profile_image.variant(resize: '100x100') %>
+              <% end %>
+              <p><%= link_to @book.user.name, user_path(current_user.id) %></p>
+            </td>
+            <td><%= link_to @book.title, book_path(@book.id) %></td>
+            <td><%= @book.body %></td>
+            <td><%= link_to 'edit', edit_book_path(@book.id) %></td>
+            <td><%= link_to 'destroy', book_path(@book.id), method: :delete,"data-confirm" => "本当に消しますか？" %></td>
+          </tr>
+        <% else %>
+                    <tr>
+            <th></th>
+            <th></th>
+            <th></th>
+          </tr>
+
+          <tr>
+            <td>
+              <%= link_to book_path do %>
+                <%= image_tag @book.user.profile_image.variant(resize: '100x100') %>
+              <% end %>
+              <p><%= link_to @book.user.name, user_path(@book.user_id) %></p>
+            </td>
+            <td><%= link_to @book.title, book_path(@book.id) %></td>
+            <td><%= @book.body %></td>
+          </tr>
+        <% end %>
+      </table>
+    </div>
+  </div>
+</div>

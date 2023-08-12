@@ -1,2 +1,33 @@
-<h1>Users#edit</h1>
-<p>Find me in app/views/users/edit.html.erb</p>
+<div class="container">
+  <div class="d-flex flex-column">
+    <div class="col-6 mx-auto m-4">
+      <h1>User info</h1>
+
+      <% if @user.errors.any? %>
+        <%= @user.errors.count %> errors prohibited this book from being saved:
+        <ul>
+          <% @user.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      <% end %>
+
+      <%= form_with model: @user, local: true do |f| %>
+        <div class="p-2">
+          <p>Name</p>
+          <%= f.text_field :name %>
+        </div>
+        <div class="p-2">
+          <label>Profile image</label>
+          <%= f.file_field :profile_image, accept: "image/*" %>
+        </div>
+        <div class="p-2">
+          <p>Introduction</p>
+          <%= f.text_area :introduction %>
+        </div>
+        <%= f.submit 'User update', class:"btn btn-info m-2" %>
+
+      <% end %>
+    </div>
+  </div>
+</div>

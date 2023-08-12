@@ -1,18 +1,39 @@
-<%= render 'layouts/sidebar',user: current_user %>
+<% if @book.errors.any? %>
+  <%= @book.errors.count %> errors prohibited this book from being saved:
+  <ul>
+    <% @book.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ul>
+<% end %>
 
-<h1>Books</h1>
-<table>
-  <tr>
-    <th></th>
-    <th>title</th>
-    <th>Opinion</th>
-  </tr>
+<div class="container m-4 mx-auto">
+  <div class="row">
+    <div class="col-4">
+      <%= render 'layouts/sidebar',user: current_user %>
+    </div>
 
-  <% @books.each do |book| %>
-    <tr>
-      <td><%= image_tag user.get_profile_image(100,100) %></td>
-      <td><%= book.title %></td>
-      <td><%= book.body %></td>
-    </tr>
-  <% end %>
-</table>
+    <div class="col-8 px-3">
+      <h1>Books</h1>
+      <table>
+        <tr>
+          <th></th>
+          <th>title</th>
+          <th>Opinion</th>
+        </tr>
+
+        <% @books.each do |book| %>
+          <tr>
+            <td><%= image_tag book.user.profile_image.variant(resize: '100x100') %></td>
+            <td>
+              <%= link_to book_path(book.id) do %>
+                <% book.title %>
+              <% end %>
+            </td>
+            <td><%= book.body %></td>
+          </tr>
+        <% end %>
+      </table>
+    </div>
+  </div>
+</div>

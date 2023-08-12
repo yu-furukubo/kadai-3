@@ -15,7 +15,7 @@
     <header class="bg-dark">
       <nav class="navbar navbar-expand-lg">
       <div class="container">
-        <a class="navbar-barand p-0"><%= link_to 'Bookers', root_path, class: "text-white" %></a>
+        <a class="navbar-barand p-0"><%= link_to 'Bookers', root_path, class: "text-white lead" %></a>
         <!--ログイン時は :Home :Users :Books :Log out-->
         <!--ログアウト時は :Home :About :Sign up :Log in-->
         <ul class="navbar-nav ml-auto">
@@ -68,6 +68,9 @@
     </header>
 
     <main>
+      <div>
+        <%= flash[:notice] %>
+      </div>
       <%= yield %>
     </main>
 
