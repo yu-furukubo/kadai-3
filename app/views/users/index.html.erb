@@ -1,13 +1,13 @@
-<div class="container m-3 mx-auto">
+<div class="container m-4 mx-md-auto">
   <div class="row">
-    <div class="col-3">
+    <div class="col-md-3">
       <%= render 'layouts/sidebar',user: current_user %>
     </div>
 
-    <div class="col-8 mx-auto">
-      <h1>Users</h1>
-      <table>
-        <tr>
+    <div class="col-md-8 offset-md-1 px-3">
+      <h3>Users</h3>
+      <table class="table">
+        <tr class="border-top border-bottom">
           <th>image</th>
           <th>name</th>
           <th></th>
